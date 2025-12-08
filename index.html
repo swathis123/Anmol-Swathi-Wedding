@@ -588,5 +588,36 @@
 
 </script>
 
+<script>
+  const rsvpForm = document.getElementById("rsvp");
+  const submitBtn = rsvpForm.querySelector("button[type='submit']");
+  const nameInput = document.getElementById("name");
+  const guestsInput = document.getElementById("guests");
+  const arrivalInput = document.getElementById("arrival");
+  const departureInput = document.getElementById("departure");
+
+  // Initially disable submit button
+  submitBtn.disabled = true;
+
+  function checkFormValidity() {
+    // Check if all required fields are filled
+    const isValid =
+      nameInput.value.trim() !== "" &&
+      guestsInput.value !== "" &&
+      arrivalInput.value !== "" &&
+      departureInput.value !== "";
+
+    // Enable or disable button
+    submitBtn.disabled = !isValid;
+  }
+
+  // Listen to input changes
+  [nameInput, guestsInput, arrivalInput, departureInput].forEach(input => {
+    input.addEventListener("input", checkFormValidity);
+    input.addEventListener("change", checkFormValidity); // for select & date inputs
+  });
+</script>
+
+
 
 </html>
